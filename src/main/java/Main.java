@@ -7,11 +7,24 @@ public class Main {
         Customer c1 = new Customer("Jon");
         Account account = new Account(c1);
 
-        int newBalance = account.depositAmount(125);
-        System.out.println(String.format("Ny balance: %d", newBalance));
 
-        newBalance = account.depositAmount(325);
-        System.out.println(String.format("Ny balance: %d", newBalance));
+
+        int deposit = account.depositAmount(5000);
+
+
+        System.out.println("you have deposited " + deposit);
+        System.out.println(account.getBalance());
+
+        //int withdraw = account.withDrawAmount(500);
+        System.out.println("you have withdrawn " + account.withDrawAmount(500));
+        System.out.println(account.getBalance());
+        account.depositAmount(500);
+        account.depositAmount(500);
+        account.depositAmount(500);
+
+        account.getTransactions();
+
+
 
     }
 }

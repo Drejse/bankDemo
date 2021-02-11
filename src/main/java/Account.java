@@ -17,26 +17,43 @@ public class Account {
     }
 
     public int getBalance(){
-        // TODO: skal debugges
         int sum = 0;
         for (Transaction transaction : transactions) {
             sum += transaction.getAmount();
+            //System.out.println(transaction.getAmount());
         }
-        return 0;
+        return sum;
     }
 
     public int withDrawAmount(int amount){
-        // TODO: skal kodes og returnere ny saldo. Smid fejl hvis amount > saldo
-        return 0;
+            int sum = getBalance();
+       if(amount > sum){
+           System.out.println("not enough money brobeans");
+       }else {
+           transactions.add(new Transaction(-amount, new Date()));
+
+       }
+           return amount;
+
     }
 
     public int depositAmount(int amount){
-        // TODO: skal debugges og returnere ny saldo. Smid fejl hvis amount < 0.
-        transactions.add(new Transaction(amount, new Date()));
-        return 0;
+        if(amount <= 0){
+            System.out.println("cant deposit 0 brobeans");
+        } else {
+            transactions.add(new Transaction(amount, new Date()));
+        }
+        return amount;
     }
 
     public List<Transaction> getTransactions() {
+        for(Transaction trans : transactions){
+            System.out.println(trans.toString());
+        }
         return transactions;
     }
+
+
+
+
 }

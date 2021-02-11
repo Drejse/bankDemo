@@ -17,4 +17,12 @@ public class Transaction {
     public Date getDate() {
         return date;
     }
+
+    @Override
+    public String toString() {
+        return "Transaction{" +
+                "amount=" + amount +
+                ", date=" + date +
+                '}';
+    }
 }
