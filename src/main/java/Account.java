@@ -1,6 +1,8 @@
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Scanner;
 
 public class Account {
 
@@ -29,12 +31,10 @@ public class Account {
             int sum = getBalance();
        if(amount > sum){
            System.out.println("not enough money brobeans");
-       }else {
+       } else {
            transactions.add(new Transaction(-amount, new Date()));
-
        }
            return amount;
-
     }
 
     public int depositAmount(int amount){
@@ -52,8 +52,4 @@ public class Account {
         }
         return transactions;
     }
-
-
-
-
 }

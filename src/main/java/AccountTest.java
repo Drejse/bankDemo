@@ -8,9 +8,6 @@ class AccountTest {
     Account account = new Account(c1);
     int newBalance = account.depositAmount(125);
 
-
-
-
     @Test
     void getBalance() {
         int expected = 125;
@@ -23,7 +20,6 @@ class AccountTest {
         int expected = 105;
         int actual = account.withDrawAmount(20);
         assertEquals(expected,actual);
-
     }
 
     @Test
@@ -32,5 +28,4 @@ class AccountTest {
         int actual = account.depositAmount(25);
         assertEquals(expected, actual);
     }
-
 }
