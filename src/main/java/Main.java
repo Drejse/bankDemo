@@ -3,7 +3,7 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) {
-
+    /*
         Customer c1 = new Customer("Jon");
         Account account = new Account(c1);
 
@@ -24,7 +24,7 @@ public class Main {
 
         account.getTransactions();
 
-
+*/
 
     }
 }
