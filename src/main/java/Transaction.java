@@ -1,5 +1,4 @@
 import java.util.Date;
-
 public class Transaction {
 
     private int amount;

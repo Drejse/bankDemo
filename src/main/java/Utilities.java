@@ -1,3 +1,5 @@
+import sun.tools.jconsole.ConnectDialog;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -5,10 +7,27 @@ import java.sql.Statement;
 import java.util.Scanner;
 
 public class Utilities {
-    private static Connection conn;
-    final static String JdbcUrl = "jdbc:mysql://localhost/BankDemo?" + "autoReconnect=true&useSSL=false";
-    final static String username = "root";
-    final static String password = "Cervelo2011";
+    public static Connection conn;
+
+
+
+    private final static String JdbcUrl = "jdbc:mysql://localhost/BankDemo?" + "autoReconnect=true&useSSL=false";
+    private final static String username = "root";
+    private final static String password = "Cervelo2011";
+
+    public static String getJdbcUrl() {
+        return JdbcUrl;
+    }
+
+    public static String getUsername() {
+        return username;
+    }
+
+    public static String getPassword() {
+        return password;
+    }
+
+
 
     public static void createConnection() {
         try {
@@ -19,21 +38,23 @@ public class Utilities {
         }
     }
 
-    public static String promtForAwnser(){
+    public static String promptForAnwser(){
         Scanner input = new Scanner(System.in);
         String answer = input.nextLine();
         return answer;
     }
-    public void createUser() {
+    public static void createUser() {
 
         System.out.println("Input email: ");
-        String email = Utilities.promtForAwnser();
+        String email = Utilities.promptForAnwser();
         System.out.println("Input Username: ");
-        String username = Utilities.promtForAwnser();
+        String username = Utilities.promptForAnwser();
         System.out.println("Input Password: ");
-        String password = Utilities.promtForAwnser();
+        String password = Utilities.promptForAnwser();
 
-        String sql = "INSERT INTO Customer (Customer_email, Customer_username, Customer_password) values ('" + email + "','" + username + "','" + password + "')";
+
+        String sql = "INSERT INTO Customer (Customer_email, Customer_username, Customer_password, Customer_balance) values ('" + email + "','" + username + "','" + password + "','" + 0 + "')";
+
         Statement st = null;
         try {
             st = conn.createStatement();
@@ -42,4 +63,18 @@ public class Utilities {
             throwables.printStackTrace();
         }
     }
+
+    public static void updateBalance(int depositAmount, String email){
+        int currentBalance = Account.getBalance();
+        int newBalance = currentBalance + depositAmount;
+        String SQL_UPDATE_BALANCE_QUERY = "UPDATE Customer SET Customer_balance = " + newBalance + " WHERE Customer_email = '" + email + "';";
+        try (Connection conn = DriverManager.getConnection(getJdbcUrl(),getUsername(),getPassword())){
+            Statement st = conn.createStatement();
+            st.executeUpdate(SQL_UPDATE_BALANCE_QUERY);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+
 }

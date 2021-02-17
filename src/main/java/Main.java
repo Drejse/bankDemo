@@ -6,6 +6,5 @@ public class Main {
 
         Utilities.createConnection();
         Driver.menu();
-
     }
 }
